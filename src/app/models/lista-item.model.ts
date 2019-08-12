@@ -5,9 +5,8 @@ export class ListaItem{
     desc: string;
     completado: boolean;
 
-    constructor( dec: string ){
-        
-        this.desc= this.desc;
+    constructor( desc: string ){        
+        this.desc= desc;
         this.completado = false;
     }
 
