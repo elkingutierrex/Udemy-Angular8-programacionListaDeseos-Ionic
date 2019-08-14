@@ -20,7 +20,7 @@
 
     <ion-list class="dark">
         <ion-list-header class="dark">
-            <ion-label color="tertiary">
+            <ion-label *ngIf="lista.items.length > 0" color="dark">
                 Tareas por hacer
             </ion-label>
         </ion-list-header>
