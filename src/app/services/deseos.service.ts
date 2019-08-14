@@ -11,10 +11,10 @@ export class DeseosService {
   constructor() { 
     
     this.cargarStorage()
-    //  const lista1 = new Lista( 'Recolelectar piedres del infinito');
-    //  const lista2 = new Lista( 'Héroes a desaparecer');
+     const lista1 = new Lista( 'Recolelectar piedres del infinito');
+     const lista2 = new Lista( 'Héroes a desaparecer');
 
-    //  this.listas.push(lista1, lista2)
+     this.listas.push(lista1, lista2)
   }
 
   crearLista( titulo: string){
