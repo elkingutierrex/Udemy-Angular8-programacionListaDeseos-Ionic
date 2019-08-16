@@ -23,11 +23,12 @@ export class ListasComponent implements OnInit {
 
   listaSeleccionada( lista : Lista){  
 
-  this.router.navigateByUrl(`/tabs/${ this.tabPage }/agregar/${ lista.id }`);
-
-
-
+    this.router.navigateByUrl(`/tabs/${ this.tabPage }/agregar/${ lista.id }`);
    
+  }
+
+  borrarLista( lista: Lista ){
+    this._deseosService.borrarLista( lista);
   }
   
 
