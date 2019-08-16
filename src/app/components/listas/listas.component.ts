@@ -11,17 +11,24 @@ import { Router } from '@angular/router';
 
 export class ListasComponent implements OnInit {  
 
-  @Input () tabPage;
+  @Input () terminada;
+
+  tabPage:string;
 
   constructor( public _deseosService: DeseosService,
-               private router: Router) {
-
-    
+               private router: Router) {  
+    console.log(this.terminada)
    }
 
   ngOnInit() {}
 
   listaSeleccionada( lista : Lista){  
+
+    if(!this.terminada){
+      this.tabPage = 'tab1'; 
+    }else{
+      this.tabPage = 'tab2';
+    }
 
     this.router.navigateByUrl(`/tabs/${ this.tabPage }/agregar/${ lista.id }`);
    
