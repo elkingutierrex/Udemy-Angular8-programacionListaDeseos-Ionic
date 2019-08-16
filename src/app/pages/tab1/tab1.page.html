@@ -6,17 +6,11 @@
     </ion-toolbar>
 </ion-header>
 
-<app-listas></app-listas>
+
 
 <ion-content color="dark">
-    <ion-list color="dark">
 
-        <ion-item *ngFor="let lista of _deseosService.listas" (click)="listaSeleccionada( lista )" detail color="dark">
-            <ion-label>{{ lista.titulo }}</ion-label>
-            <ion-note color="tertiary" slot="end">{{ lista.items.length }}</ion-note>
-        </ion-item>
-
-    </ion-list>
+    <app-listas [tabPage]=" 'tab1' "></app-listas>
 
     <!-- fab placed to the top end -->
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -24,4 +18,5 @@
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
+
 </ion-content>

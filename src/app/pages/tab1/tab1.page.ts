@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { DeseosService } from 'src/app/services/deseos.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Lista } from 'src/app/models/lista.model';
 // import { type } from 'os';
 // import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
@@ -58,9 +57,6 @@ export class Tab1Page {
  
   }
 
-listaSeleccionada( lista : Lista){
-  console.log(lista);
-  this.router.navigateByUrl(`/tabs/tab1/agregar/${ lista.id }`) 
-}
+
 
 }
