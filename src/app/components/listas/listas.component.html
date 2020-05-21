@@ -2,8 +2,12 @@
     <ion-item-sliding *ngFor="let lista of _deseosService.listas | filtroCompletado: terminada">
 
         <ion-item (click)="listaSeleccionada(lista)" detail color="dark">
-            <ion-label>{{ lista.titulo }}</ion-label>
-            <ion-note color="tertiary" slot="end">{{ lista.items.length }} items
+            <ion-label>{{ lista.titulo }} </ion-label>
+            <ion-note color="tertiary" slot="end">
+                {{ lista.venceEn}} 
+            </ion-note>
+            <ion-note color="tertiary" slot="end">
+                {{ lista.items.length }} items
             </ion-note>
         </ion-item>
 

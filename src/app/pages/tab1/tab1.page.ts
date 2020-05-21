@@ -21,13 +21,24 @@ export class Tab1Page {
   async agregarLista() {
 
     const alert = await this.alertController.create({
-      header: 'Nueva lista',
+      header: 'Nueva tarea',
       inputs: [
         {
           name: "titulo",
           type: "text",
           placeholder: "Nombre de la lista",
+        },
+        {
+          name: "prioridad",
+          type: "search",
+          placeholder: "Prioridad",
+        },
+        {
+          name: "venceEn",
+          type: "date",
+          placeholder: "Nombre de la lista",
         }
+
       ],
       buttons: [
         {
@@ -41,11 +52,11 @@ export class Tab1Page {
           text: 'Crear',
           handler: (data) => {
             console.log(data);
-            if( data.titulo.length === 0){
+            if( data.titulo.length === 0 || !data.prioridad  || !data.venceEn ){
               return;
             }
 
-            const listaId = this._deseosService.crearLista( data.titulo );
+            const listaId = this._deseosService.crearLista( data.titulo, data.prioridad, data.venceEn );
 
             this.router.navigateByUrl(`/tabs/tab1/agregar/${ listaId }`)
           }

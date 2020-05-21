@@ -17,9 +17,9 @@ export class DeseosService {
     //  this.listas.push(lista1, lista2)
   }
 
-  crearLista( titulo: string){
+  crearLista( titulo: string, prioridad : any, venceEn: Date){
 
-    const nuevaLista = new Lista(titulo);
+    const nuevaLista = new Lista(titulo, prioridad , venceEn );
     this.listas.push( nuevaLista );
     this.guardarStorage();
 
