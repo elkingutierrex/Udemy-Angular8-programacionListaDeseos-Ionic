@@ -21,7 +21,7 @@ export class Tab1Page {
   async agregarLista() {
 
     const alert = await this.alertController.create({
-      header: 'Nueva tarea',
+      header: 'Nueva lista de tareas',
       inputs: [
         {
           name: "titulo",
@@ -36,7 +36,8 @@ export class Tab1Page {
         {
           name: "venceEn",
           type: "date",
-          placeholder: "Nombre de la lista",
+          placeholder: "Vence",
+          
         }
 
       ],
