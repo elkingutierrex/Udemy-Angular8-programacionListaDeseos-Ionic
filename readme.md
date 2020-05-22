@@ -1,4 +1,4 @@
-# Lista de deseos
+# Lista de deseos (tareas)
 
 ### Aplicacion elaborada en Ionic 4 con angular 8.1 Actualizada a la fecha a Ionic 4.11 y Angular 9.1
 elaborado por: elkingutierrex
@@ -7,5 +7,8 @@ elaborado por: elkingutierrex
 - El proyecto se encuentra actualizado a angular 9.1
 - consultar requerimientos en https://update.angular.io/#8.0:9.0l2
 
-## Pasos de instalacón 
-- Despues de haber descargado el projecto ejecutar el comando *nmp install*
+## Recomendaciones para prueba.
+
+## Pasos de instalación 
+- Despues de haber descargado el projecto ejecutar el comando: **nmp install**
+- Correr el proyecto con el comando: **ng serve**
