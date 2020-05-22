@@ -7,6 +7,13 @@ import { Lista } from '../models/lista.model';
 export class DeseosService {
 
   listas: Lista [] = [];
+  arrayPrioridad: any[] = [
+
+    {descripcion: "Alta"}
+    ,{descripcion: "Media"}
+    ,{descripcion: "Baja"}
+    
+  ];
 
   constructor() { 
     

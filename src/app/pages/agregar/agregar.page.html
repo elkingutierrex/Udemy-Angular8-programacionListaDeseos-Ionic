@@ -4,7 +4,17 @@
             <ion-back-button color="tertiary" defaultHref="/"></ion-back-button>
         </ion-buttons>
 
-        <ion-title>{{ lista.titulo }}</ion-title>
+        <ion-title>
+            {{ lista.titulo }}
+
+        </ion-title>
+        <ion-note color="light" slot="end">               
+            <strong>{{ lista.prioridad }}   </strong>
+            <br>
+            Vence: 
+            <strong>{{ lista.venceEn | date : 'dd/MM/yyyy'}}   </strong>
+        </ion-note>  
+        
     </ion-toolbar>
 </ion-header>
 
@@ -18,7 +28,7 @@
             </ion-input>
         </ion-item>
     </ion-list>
-    
+
     <ion-list class="dark">
         <ion-list-header class="dark">
             <ion-label *ngIf="lista.items.length > 0" color="dark">
