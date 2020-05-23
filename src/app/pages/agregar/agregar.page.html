@@ -1,19 +1,20 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" style="text-align: center;">
     <ion-toolbar color="dark">
         <ion-buttons slot="start">
             <ion-back-button color="tertiary" defaultHref="/"></ion-back-button>
         </ion-buttons>
 
-        <ion-title>
-            {{ lista.titulo }}
-
-        </ion-title>
-        <ion-note color="light" slot="end">               
-            <strong>{{ lista.prioridad }}   </strong>
+        <ion-label>
+            <strong> {{ lista.titulo }} </strong>
             <br>
-            Vence: 
-            <strong>{{ lista.venceEn | date : 'dd/MM/yyyy'}}   </strong>
-        </ion-note>  
+            <ion-note color="light" style="font-size:small; text-align: center;" slot="end"> 
+               
+                
+                Vence: 
+                <strong style="font-size:small; text-align: center;">{{ lista.venceEn | date : 'dd/MM/yyyy'}} </strong>
+            </ion-note>      
+           
+        </ion-label> 
         
     </ion-toolbar>
 </ion-header>
