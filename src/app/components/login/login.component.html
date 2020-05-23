@@ -11,13 +11,13 @@
     <ion-label position="floating">
       Corrreo electronico
     </ion-label >
-    <ion-input  type="text" name="email" ></ion-input>
+    <ion-input  type="text" name="email" [(ngModel)]="email" ></ion-input>
   </ion-item >
   <ion-item color="dark">
     <ion-label position="floating">
       Contraseña
     </ion-label>
-    <ion-input  type="password" name="password" ></ion-input>
+    <ion-input  type="password" name="password" [(ngModel)]="password" ></ion-input>
   </ion-item>
 <br>
   <ion-button expand="block" color="tertiary" (click)="onSubmitLogin()">Entrar</ion-button>

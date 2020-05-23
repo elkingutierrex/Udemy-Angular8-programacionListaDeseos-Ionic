@@ -4,6 +4,7 @@ import { ListasComponent } from './listas/listas.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,FormsModule
   ]
 })
 export class ComponentsModule { }
