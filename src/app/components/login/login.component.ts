@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   onSubmitLogin(){
     this._auth.login(this.email, this.password).then(res => {
       this.router.navigate(['/tabs/tab1']);
+      console.log(res)
       }).catch(err => {this.showErrorLogin = true;})
   }
 

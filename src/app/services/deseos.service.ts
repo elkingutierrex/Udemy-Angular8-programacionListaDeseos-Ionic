@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Lista } from '../models/lista.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class DeseosService {
     
   ];
 
-  constructor() { 
+  constructor(private db : AngularFirestore) { 
     
-    this.cargarStorage()
+    this.cargarStorage();
+    this.getListasByUser();
     //  const lista1 = new Lista( 'Recolelectar piedres del infinito');
     //  const lista2 = new Lista( 'Héroes a desaparecer');
 
@@ -54,6 +56,14 @@ export class DeseosService {
     this.listas = this.listas.filter( listaData => listaData.id !== lista.id);
 
     this.guardarStorage();
+  }
+
+  getListasByUser(){
+    return this.db.collection('listaTareas').snapshotChanges().subscribe(listas =>{
+      listas.map( listas => {
+      console.log(listas.payload.doc.data()) })
+    })
+    
   }
 
 }

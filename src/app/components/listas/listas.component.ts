@@ -10,39 +10,39 @@ import { AlertController, IonList } from '@ionic/angular';
   styleUrls: ['./listas.component.scss'],
 })
 
-export class ListasComponent implements OnInit {  
+export class ListasComponent implements OnInit {
 
-  @ViewChild( IonList ) lista: IonList;
-  @Input () terminada;
+  @ViewChild(IonList) lista: IonList;
+  @Input() terminada;
 
-  tabPage:string;
+  tabPage: string;
 
-  constructor( public _deseosService: DeseosService,
-               private router: Router,
-               public alertController: AlertController) {  
+  constructor(public _deseosService: DeseosService,
+    private router: Router,
+    public alertController: AlertController) {
     console.log(this.terminada)
-   }
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  listaSeleccionada( lista : Lista){  
+  listaSeleccionada(lista: Lista) {
 
-    if(!this.terminada){
-      this.tabPage = 'tab1'; 
-    }else{
+    if (!this.terminada) {
+      this.tabPage = 'tab1';
+    } else {
       this.tabPage = 'tab2';
     }
 
-    this.router.navigateByUrl(`/tabs/${ this.tabPage }/agregar/${ lista.id }`);
-   
+    this.router.navigateByUrl(`/tabs/${this.tabPage}/agregar/${lista.id}`);
+
   }
 
-  borrarLista( lista: Lista ){
-    this._deseosService.borrarLista( lista);
+  borrarLista(lista: Lista) {
+    this._deseosService.borrarLista(lista);
   }
 
-  async editarLista(lista){
-console.log(lista);
+  async editarLista(lista) {
+    console.log(lista);
 
     const alert = await this.alertController.create({
       header: 'Editar lista',
@@ -67,26 +67,22 @@ console.log(lista);
           text: 'Editar',
           handler: (data) => {
             console.log(data);
-            if( data.titulo.length === 0){
+            if (data.titulo.length === 0) {
               return;
             }
 
-            lista.titulo = data.titulo;           
+            lista.titulo = data.titulo;
             this._deseosService.guardarStorage();
             this.lista.closeSlidingItems();
-            
-            
+
+
           }
-        }        
+        }
       ]
     })
 
     alert.present();
 
   }
-
- 
-  
-  
 
 }
