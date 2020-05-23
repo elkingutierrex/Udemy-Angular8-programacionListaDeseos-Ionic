@@ -1,0 +1,24 @@
+<ion-header  color="dark">
+  <ion-toolbar color="dark">
+    <ion-title class="ion-text-center">Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding"  color="dark">
+  <img src="../../../assets/images/checking.png" alt="" class="icon">
+  <ion-title class="ion-text-center" class="titleApp">Lista de tareas</ion-title>
+  <ion-item color="dark">
+    <ion-label position="floating">
+      Corrreo electronico
+    </ion-label >
+    <ion-input  type="text" name="email" ></ion-input>
+  </ion-item >
+  <ion-item color="dark">
+    <ion-label position="floating">
+      Contraseña
+    </ion-label>
+    <ion-input  type="password" name="password" ></ion-input>
+  </ion-item>
+<br>
+  <ion-button expand="block" color="tertiary" (click)="onSubmitLogin()">Entrar</ion-button>
+</ion-content>
