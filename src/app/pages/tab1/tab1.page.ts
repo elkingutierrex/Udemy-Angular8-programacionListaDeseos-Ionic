@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DeseosService } from 'src/app/services/deseos.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 // import { type } from 'os';
 // import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
@@ -15,7 +16,8 @@ export class Tab1Page {
   constructor(
     public _deseosService: DeseosService,
     public router: Router,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    public _auth: AuthService) { }
 
 
   async agregarLista() {
@@ -67,6 +69,31 @@ export class Tab1Page {
 
   alert.present();
  
+  }
+
+  async logout(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Salir!',
+      message: 'Desea <strong>cerrar sesión text</strong>?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Cerrar sesión',
+          handler: () => {
+            this._auth.logout();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

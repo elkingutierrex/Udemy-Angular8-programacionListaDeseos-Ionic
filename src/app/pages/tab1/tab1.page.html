@@ -1,22 +1,31 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" >
+    <!-- button exit -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="logout()" color="tertiary">
+            <ion-icon name="exit"></ion-icon>
+
+        </ion-fab-button>
+    </ion-fab>
     <ion-toolbar color="dark">
         <ion-title>
             Tareas pendientes
         </ion-title>
+         
     </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content color="dark">
-
     <app-listas [terminada]=" false "></app-listas>
-
     <!-- fab placed to the top end -->
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="agregarLista()" color="tertiary">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
+
+
+
 
 </ion-content>

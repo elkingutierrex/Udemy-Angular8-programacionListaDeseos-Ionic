@@ -1,4 +1,5 @@
 <ion-list color="dark">
+       
     <ion-item-sliding *ngFor="let lista of _deseosService.listas | filtroCompletado: terminada">
 
         <ion-item (click)="listaSeleccionada(lista)" detail color="dark">
@@ -36,7 +37,7 @@
                 <ion-icon slot="icon-only" name="close"></ion-icon>
             </ion-item-option>
 
-        </ion-item-options>
+        </ion-item-options>        
 
     </ion-item-sliding>
 </ion-list>
