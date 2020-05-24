@@ -3,6 +3,7 @@ import { DeseosService } from 'src/app/services/deseos.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import * as moment from 'moment';
 // import { type } from 'os';
 // import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
@@ -13,11 +14,19 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class Tab1Page {
 
+  today: Date = new Date();
+
+
   constructor(
     public _deseosService: DeseosService,
     public router: Router,
     public alertController: AlertController,
-    public _auth: AuthService) { }
+    public _auth: AuthService) {
+  }
+
+  ngOnInit() {
+    this.mostrarProximaAvencer();
+  }
 
 
   async agregarLista() {
@@ -39,7 +48,7 @@ export class Tab1Page {
           name: "venceEn",
           type: "date",
           placeholder: "Vence",
-          
+
         }
 
       ],
@@ -55,23 +64,23 @@ export class Tab1Page {
           text: 'Crear',
           handler: (data) => {
             console.log(data);
-            if( data.titulo.length === 0 || !data.prioridad  || !data.venceEn ){              
+            if (data.titulo.length === 0 || !data.prioridad || !data.venceEn) {
               return;
             }
 
-            const listaId = this._deseosService.crearLista( data.titulo, data.prioridad, data.venceEn );
+            const listaId = this._deseosService.crearLista(data.titulo, data.prioridad, data.venceEn);
 
-            this.router.navigateByUrl(`/tabs/tab1/agregar/${ listaId }`)
+            this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
           }
-        }        
+        }
       ]
-  });
+    });
 
-  alert.present();
- 
+    alert.present();
+
   }
 
-  async logout(){
+  async logout() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Salir!',
@@ -91,6 +100,30 @@ export class Tab1Page {
           }
         }
       ]
+    });
+
+    await alert.present();
+  }
+
+  mostrarProximaAvencer(){
+    let proximaTareaVencer = this._deseosService.listas.sort((a,b) => new Date(a.venceEn).getTime() - new Date(b.venceEn).getTime())
+
+    let x = this._deseosService.listas.find(item => {
+      if (!item.terminada && (  moment(item.venceEn).format('L') >= moment(this.today).format('L')) ) {
+        return item;
+      }
+    })
+    if(!x)return;
+    this.mostrarProximaTareaAvencer(x)
+
+  }
+
+  async mostrarProximaTareaAvencer(proximaTareaVencer) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: `La proxima tarea a vencer es ${proximaTareaVencer.titulo}, fecha de vencimiento ${proximaTareaVencer.venceEn} `,
+      buttons: ['OK']
     });
 
     await alert.present();
