@@ -106,15 +106,13 @@ export class Tab1Page {
   }
 
   mostrarProximaAvencer(){
-    let proximaTareaVencer = this._deseosService.listas.sort((a,b) => new Date(a.venceEn).getTime() - new Date(b.venceEn).getTime())
-
-    let x = this._deseosService.listas.find(item => {
+    let proximaTareaVencer = this._deseosService.listas.sort((a,b) => new Date(a.venceEn).getTime() - new Date(b.venceEn).getTime()).find(item => {
       if (!item.terminada && (  moment(item.venceEn).format('L') >= moment(this.today).format('L')) ) {
         return item;
       }
     })
-    if(!x)return;
-    this.mostrarProximaTareaAvencer(x)
+    if(!proximaTareaVencer)return;
+    this.mostrarProximaTareaAvencer(proximaTareaVencer)
 
   }
 
@@ -122,7 +120,7 @@ export class Tab1Page {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
-      message: `La proxima tarea a vencer es ${proximaTareaVencer.titulo}, fecha de vencimiento ${proximaTareaVencer.venceEn} `,
+      message: `La proxima tarea a vencer es <strong> '${proximaTareaVencer.titulo}'</strong>, fecha de vencimiento <strong> ${proximaTareaVencer.venceEn}</strong> `,
       buttons: ['OK']
     });
 

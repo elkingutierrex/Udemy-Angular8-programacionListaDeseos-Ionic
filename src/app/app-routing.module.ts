@@ -5,6 +5,7 @@ import { NologinGuard } from './guards/nologin.guard';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent, canActivate:[NologinGuard] },
+  { path: '', component: LoginComponent, canActivate:[NologinGuard] },
   {
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
