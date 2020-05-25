@@ -58,13 +58,11 @@ export class Tab1Page {
           handler: (data) => {
             console.log(data);
             if (data.titulo.length === 0) {
+              this.errorCreacionLista();
               return;
             }
             this.nuevalista.titulo = data.titulo;
 
-            // const listaId = this._deseosService.crearLista(data.titulo, data.prioridad, data.venceEn);
-
-            // this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
             this.fechaVencimientoLista();
           }
         }
@@ -100,6 +98,7 @@ export class Tab1Page {
           handler: (data) => {
             console.log(data);
             if (!data.venceEn) {
+              this.errorCreacionLista();
               return;
             }
             this.nuevalista.venceEn = data.venceEn;
@@ -152,13 +151,14 @@ export class Tab1Page {
           text: 'Ok',
           handler: (data) => {
             this.nuevalista.prioridad = data;
-            console.log(this.nuevalista);
-            
-          
+
+            if(!data.prioridad){
+              this.errorCreacionLista();
+            }
 
             const listaId = this._deseosService.crearLista(this.nuevalista.titulo, this.nuevalista.prioridad, this.nuevalista.venceEn);
 
-            // this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
+            this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
             
           }
         }
@@ -209,6 +209,17 @@ export class Tab1Page {
       cssClass: 'my-custom-class',
       header: 'Alerta',
       message: `La proxima tarea a vencer es <strong> '${proximaTareaVencer.titulo}'</strong>, fecha de vencimiento <strong> ${proximaTareaVencer.venceEn}</strong> `,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async errorCreacionLista() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'No se completo con exito la creación de la lista de tareas. <br>  Todos los campos deben ser diligenciados!',
       buttons: ['OK']
     });
 
