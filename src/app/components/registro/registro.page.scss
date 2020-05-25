@@ -1,0 +1,17 @@
+.icon{
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 7rem;
+    background-color: var(--ion-color-tertiary-shade, #633ce0) !important;
+    padding: 1rem;
+    border-radius: 35%;
+}
+
+.titleApp{
+    text-align: right !important;
+    font-size: 1.5rem;
+    margin-top:3rem ;
+    margin-bottom:3rem ;
+    color: var(--ion-color-tertiary-shade, #633ce0) !important;
+}
