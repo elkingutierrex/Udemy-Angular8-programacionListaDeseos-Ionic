@@ -15,6 +15,11 @@ import * as moment from 'moment';
 export class Tab1Page {
 
   today: Date = new Date();
+  nuevalista: any = {
+    titulo : ''
+    ,prioridad : ''
+    ,venceEn : ''    
+  }
 
 
   constructor(
@@ -32,25 +37,13 @@ export class Tab1Page {
   async agregarLista() {
 
     const alert = await this.alertController.create({
-      header: 'Nueva lista de tareas',
+      header: 'Agrege nombre de la nueva lista',
       inputs: [
         {
           name: "titulo",
           type: "text",
           placeholder: "Nombre de la lista",
-        },
-        {
-          name: "prioridad",
-          type: "search",
-          placeholder: "Prioridad",
-        },
-        {
-          name: "venceEn",
-          type: "date",
-          placeholder: "Vence",
-
         }
-
       ],
       buttons: [
         {
@@ -64,13 +57,15 @@ export class Tab1Page {
           text: 'Crear',
           handler: (data) => {
             console.log(data);
-            if (data.titulo.length === 0 || !data.prioridad || !data.venceEn) {
+            if (data.titulo.length === 0) {
               return;
             }
+            this.nuevalista.titulo = data.titulo;
 
-            const listaId = this._deseosService.crearLista(data.titulo, data.prioridad, data.venceEn);
+            // const listaId = this._deseosService.crearLista(data.titulo, data.prioridad, data.venceEn);
 
-            this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
+            // this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
+            this.fechaVencimientoLista();
           }
         }
       ]
@@ -78,6 +73,99 @@ export class Tab1Page {
 
     alert.present();
 
+  }
+
+  async fechaVencimientoLista() {
+
+    const alert = await this.alertController.create({
+      header: 'Fecha vencimiento',
+      inputs: [
+        {
+          name: "venceEn",
+          type: "date",
+          placeholder: "Vence",
+
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancelar');
+          }
+        },
+        {
+          text: 'Crear',
+          handler: (data) => {
+            console.log(data);
+            if (!data.venceEn) {
+              return;
+            }
+            this.nuevalista.venceEn = data.venceEn;
+            this.presentAlertRadio();
+          }
+        }
+      ]
+    });
+
+    alert.present();
+
+  }
+
+
+  async presentAlertRadio() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Prioridad',
+      inputs: [
+        {
+          name: 'Urgente',
+          type: 'radio',
+          label: 'Urgente',
+          value: 'Urgente',
+          checked: true
+        },
+        {
+          name: 'Normal',
+          type: 'radio',
+          label: 'Normal',
+          value: 'Normal'
+        },
+        {
+          name: 'Baja',
+          type: 'radio',
+          label: 'Baja',
+          value: 'Baja'
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            this.nuevalista.prioridad = data;
+            console.log(this.nuevalista);
+            
+          
+
+            const listaId = this._deseosService.crearLista(this.nuevalista.titulo, this.nuevalista.prioridad, this.nuevalista.venceEn);
+
+            // this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`)
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async logout() {
