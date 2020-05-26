@@ -54,7 +54,7 @@ export class Tab1Page {
           }
         },
         {
-          text: 'Crear',
+          text: 'Siguiente',
           handler: (data) => {
             console.log(data);
             if (data.titulo.length === 0) {
@@ -94,7 +94,7 @@ export class Tab1Page {
           }
         },
         {
-          text: 'Crear',
+          text: 'Siguiente',
           handler: (data) => {
             console.log(data);
             if (!data.venceEn) {
@@ -148,11 +148,11 @@ export class Tab1Page {
             console.log('Confirm Cancel');
           }
         }, {
-          text: 'Ok',
+          text: 'Crear',
           handler: (data) => {
             this.nuevalista.prioridad = data;
 
-            if(!data.prioridad){
+            if(!data){
               this.errorCreacionLista();
             }
 
